@@ -2,14 +2,28 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerControler : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    /// <summary>
+    /// rotación que se aplica
+    /// </summary>
+    const float TORQUE = 5f;
+    /// <summary>
+    /// rotación máxima
+    /// </summary>
+    const float TORQUE_MAX = 500f;
+
     [SerializeField] private float boostMulti = 20f;   //multiplicador de velocidad
-    [SerializeField] private float baseSpd = 15f;   //velocidad base
+    [SerializeField] private float baseSpd = 12f;   //velocidad base
+    [SerializeField] private ScoreManager scoreManager;
     InputAction moveAction;
     Vector2 moveValue;
     Rigidbody2D rb;
     SurfaceEffector2D surfaceEfector2d;
 
+    int contadorVueltas;
+    float totalRotation;
+    float previousRotation;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
@@ -21,6 +35,8 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         RotarJugador();
+        ImpulsarJugador();
+        CalculateFlips();
     }
 
     void RotarJugador()
@@ -28,11 +44,19 @@ public class PlayerControler : MonoBehaviour
         moveValue = moveAction.ReadValue<Vector2>();
         if (moveValue.x > 0)
         {
-            rb.AddTorque(5f);
+            rb.AddTorque(-TORQUE);
+            if (rb.angularVelocity < -TORQUE_MAX)
+            {
+                rb.angularVelocity = -TORQUE_MAX;
+            }
         }
         else if (moveValue.x < 0)
         {
-            rb.AddTorque(-5f);
+            rb.AddTorque(TORQUE);
+            if (rb.angularVelocity > TORQUE_MAX)
+            {
+                rb.angularVelocity = TORQUE_MAX;
+            }
         }
     }
 
@@ -44,10 +68,25 @@ public class PlayerControler : MonoBehaviour
         if (moveValue.y > 0)
         {
             surfaceEfector2d.speed = boostMulti;
+            Debug.Log("!Arre!");
         }
         else
         {
             surfaceEfector2d.speed = baseSpd;
+        }
+    }
+
+    void CalculateFlips()
+    {
+        float currentRotation = transform.rotation.eulerAngles.z;   //rotación actual
+        totalRotation += Mathf.DeltaAngle(previousRotation, currentRotation);
+        if (Mathf.Abs(totalRotation) >= 340f)
+        {
+            contadorVueltas++;
+            totalRotation = 0;
+            previousRotation = currentRotation;
+            Debug.Log("Volteretas: " + contadorVueltas);
+            scoreManager.UpdateScore(contadorVueltas * 100);    //actualizo la puntuación en función del nº de vueltas
         }
     }
 }
