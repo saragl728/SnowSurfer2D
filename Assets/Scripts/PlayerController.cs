@@ -84,9 +84,10 @@ public class PlayerControler : MonoBehaviour
         {
             contadorVueltas++;
             totalRotation = 0;
-            previousRotation = currentRotation;
             Debug.Log("Volteretas: " + contadorVueltas);
             scoreManager.UpdateScore(contadorVueltas * 100);    //actualizo la puntuación en función del nº de vueltas
         }
+        previousRotation = currentRotation;
+
     }
 }
