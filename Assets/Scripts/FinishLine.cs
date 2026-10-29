@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -15,13 +16,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
         
     } */
     [SerializeField] private ParticleSystem finisParticles;
+    [SerializeField] private TextMeshProUGUI mensajeText;
 
     //para cuando se llegue a la línea de meta con la bandera
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("!Has ganado un pin!");
+            mensajeText.color = Color.green;
+            mensajeText.text = "Has ganado";
+            
             //efecto partículas
             finisParticles.Play();
             //espera 1,5 segundos para recargar la escena

@@ -68,7 +68,7 @@ public class PlayerControler : MonoBehaviour
         if (moveValue.y > 0)
         {
             surfaceEfector2d.speed = boostMulti;
-            Debug.Log("!Arre!");
+            //Debug.Log("!Arre!");
         }
         else
         {
@@ -84,7 +84,7 @@ public class PlayerControler : MonoBehaviour
         {
             contadorVueltas++;
             totalRotation = 0;
-            Debug.Log("Volteretas: " + contadorVueltas);
+            //Debug.Log("Volteretas: " + contadorVueltas);
             scoreManager.UpdateScore(contadorVueltas * 100);    //actualizo la puntuación en función del nº de vueltas
         }
         previousRotation = currentRotation;

@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CrashDetector : MonoBehaviour
 {
 
-        [SerializeField] private ParticleSystem muertiPartic;
+    [SerializeField] private ParticleSystem muertiPartic;
+    [SerializeField] private TextMeshProUGUI mensajeText;
     void OnTriggerEnter2D(Collider2D other)
     {
         int layer = LayerMask.NameToLayer("Floor");
@@ -14,7 +16,8 @@ public class CrashDetector : MonoBehaviour
             //partículas
             muertiPartic.Play();
 
-            Debug.Log("Has palmado");
+            mensajeText.color = Color.red;
+            mensajeText.text = "Has fallado";
             Invoke(nameof(RecargaEscena), 1.5f);
         }
     }
