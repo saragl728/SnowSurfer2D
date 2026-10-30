@@ -17,19 +17,29 @@ public class MenuManager : MonoBehaviour
 
     public void GoToCredits()
     {
-        //TODO: hacer la scene de créditos
         SceneManager.LoadScene("Credits");
     }
 
     public void GoToCharacters()
     {
-        //TODO: hacer la scene de los personajes
         SceneManager.LoadScene("Characters");
     }
 
     public void GoToMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    /// <summary>
+    /// Para elegir el personaje jugable
+    /// </summary>
+    /// <param name="characterIndex">Índice asociado al jugador</param>
+    public void SelectCharacter(int characterIndex)
+    {
+        //guarda las preferencias
+        PlayerPrefs.SetInt("SelectedCharacter", characterIndex);
+        //va al menú principal
+        GoToMenu();
     }
 
 }
