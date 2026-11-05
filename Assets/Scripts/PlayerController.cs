@@ -36,6 +36,8 @@ public class PlayerControler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        isPaused = false;
+        Time.timeScale = 1f;
         //pone el sprite del personaje seleccionado
         int selectedCharacter = PlayerPrefs.GetInt("SelectedCharacter", 0);
         transform.GetChild(0).GetChild(selectedCharacter).gameObject.SetActive(true);
