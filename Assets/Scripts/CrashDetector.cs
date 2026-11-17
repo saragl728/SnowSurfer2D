@@ -14,7 +14,7 @@ public class CrashDetector : MonoBehaviour
             //partículas
             muertiPartic.Play();
 
-            Debug.Log("Has palmado");
+            //Debug.Log("Has palmado");
             Invoke(nameof(RecargaEscena), 1.5f);
         }
     }

@@ -21,7 +21,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("!Has ganado un pin!");
+            //Debug.Log("!Has ganado un pin!");
             //efecto partículas
             finisParticles.Play();
             //espera 1,5 segundos para recargar la escena
