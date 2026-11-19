@@ -1533,7 +1533,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: snow surfer 2d
+  m_text: serra gelada
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b6dd9584f28c8f2182d67435fb52627, type: 2}
   m_sharedMaterial: {fileID: -5787892819227996, guid: 4b6dd9584f28c8f2182d67435fb52627, type: 2}
